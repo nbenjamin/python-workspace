@@ -16,8 +16,29 @@ def read_file(file_name):
         while line:
             print(line)
             line = file.readline()
+
+    except:
+        print("File not found")
+
     finally:
         file.close()
+
+
+def read_file_option2(file_name):
+    lines = []
+    try:
+        file = open('customers.txt', 'r')
+        for line in file:
+            line = line.strip()  # Strip new line character
+            lines.append(line)
+            print(line)
+    except FileNotFoundError as error:
+        print("File not found", error)
+
+    finally:
+        file.close()
+    # list will have new line character as well with out strip method call
+    print(lines)
 
 
 def main():
@@ -27,6 +48,7 @@ def main():
     }
     file_name = write_into_files(customers)
     read_file(file_name)
+    read_file_option2(file_name)
 
 
 main()
